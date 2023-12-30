@@ -38,7 +38,7 @@ spec:
   selector:
       app: adminer
       env: dev
-  type : LoadBalancer
+  type : ClusterIP
   ports:
   - port: 8080
 ---
