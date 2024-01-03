@@ -79,4 +79,4 @@ spec:
   tls:
   - hosts:
       - nagios.traitor.ar
-    secretName: dadosapp/nagios-cert
+    secretName: nagios-cert
