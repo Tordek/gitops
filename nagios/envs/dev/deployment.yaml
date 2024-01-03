@@ -1,0 +1,82 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nagios
+spec:
+  selector:
+    matchLabels:
+      app: nagios
+  template:
+    metadata:
+      labels:
+        app: nagios
+    spec:
+      containers:
+      - name: nagios
+        image: jasonrivers/nagios:latest
+        resources:
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+        envFrom:
+        - configMapRef:
+            name: nagios
+        # startupProbe:
+        #   httpGet:
+        #       path: /
+        #       port: 5000
+        #   initialDelaySeconds: 10
+        #   periodSeconds: 10
+        #   failureThreshold: 50
+        # livenessProbe:
+        #   httpGet:
+        #       path: /
+        #       port: 5000
+        #   initialDelaySeconds: 6
+        #   periodSeconds: 6
+        #   failureThreshold: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nagios
+spec:
+  selector:
+    app: nagios
+  type : ClusterIP
+  ports:
+  - port: 80
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nagios
+data:
+  NAGIOS_FQDN: nagios.traitor.ar
+  NAGIOS_TIMEZONE: America/Argentina/Buenos_Aires
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nagios-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: nagios.traitor.ar
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: adminer
+            port:
+              number: 8080
+    tls:
+    - hosts:
+        - nagios.traitor.ar
+      secretName: dadosapp/nagios-cert
