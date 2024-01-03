@@ -4,3 +4,8 @@ resources:
 - namespace.yaml
 - deployment.yaml
 namespace: nagios
+
+configMapGenerator:
+  - name: nagiosetc
+    files:
+      - "etc/nagios.cfg"
