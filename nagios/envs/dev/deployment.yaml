@@ -76,7 +76,7 @@ spec:
             name: adminer
             port:
               number: 8080
-    tls:
-    - hosts:
-        - nagios.traitor.ar
-      secretName: dadosapp/nagios-cert
+  tls:
+  - hosts:
+      - nagios.traitor.ar
+    secretName: dadosapp/nagios-cert
