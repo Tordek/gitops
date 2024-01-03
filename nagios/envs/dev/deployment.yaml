@@ -73,9 +73,9 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: adminer
+            name: nagios
             port:
-              number: 8080
+              number: 80
   tls:
   - hosts:
       - nagios.traitor.ar
