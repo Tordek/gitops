@@ -22,4 +22,4 @@ configMapGenerator:
       - etc/htpasswd.users
       - etc/nsca.cfg
       - etc/cgi.cfg
-      - empty
+      - etc/empty
