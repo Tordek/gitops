@@ -33,33 +33,33 @@ spec:
             name: nagiosetc
             items:
               - key: resource.cfg
-                path: etc/resource.cfg
+                path: resource.cfg
               - key: nagios.cfg
-                path: etc/nagios.cfg
+                path: nagios.cfg
               - key: templates.cfg
-                path: etc/objects/templates.cfg
+                path: objects/templates.cfg
               - key: printer.cfg
-                path: etc/objects/printer.cfg
+                path: objects/printer.cfg
               - key: switch.cfg
-                path: etc/objects/switch.cfg
+                path: objects/switch.cfg
               - key: timeperiods.cfg
-                path: etc/objects/timeperiods.cfg
+                path: objects/timeperiods.cfg
               - key: windows.cfg
-                path: etc/objects/windows.cfg
+                path: objects/windows.cfg
               - key: localhost.cfg
-                path: etc/objects/localhost.cfg
+                path: objects/localhost.cfg
               - key: commands.cfg
-                path: etc/objects/commands.cfg
+                path: objects/commands.cfg
               - key: contacts.cfg
-                path: etc/objects/contacts.cfg
+                path: objects/contacts.cfg
               - key: send_nsca.cfg
-                path: etc/send_nsca.cfg
+                path: send_nsca.cfg
               - key: htpasswd.users
-                path: etc/htpasswd.users
+                path: htpasswd.users
               - key: nsca.cfg
-                path: etc/nsca.cfg
+                path: nsca.cfg
               - key: cgi.cfg
-                path: etc/cgi.cfg
+                path: cgi.cfg
           # startupProbe:
           #   httpGet:
           #       path: /
