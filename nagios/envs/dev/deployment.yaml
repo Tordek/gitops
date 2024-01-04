@@ -62,6 +62,8 @@ spec:
                 path: cgi.cfg
               - key: empty
                 path: conf.d/empty
+              - key: empty
+                path: monitor/empty
           # startupProbe:
           #   httpGet:
           #       path: /
