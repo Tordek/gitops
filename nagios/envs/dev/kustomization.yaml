@@ -8,17 +8,17 @@ namespace: nagios
 configMapGenerator:
   - name: nagiosetc
     files:
-      - etc/resource.cfg
-      - etc/nagios.cfg
-      - etc/objects/templates.cfg
-      - etc/objects/printer.cfg
-      - etc/objects/switch.cfg
-      - etc/objects/timeperiods.cfg
-      - etc/objects/windows.cfg
-      - etc/objects/localhost.cfg
-      - etc/objects/commands.cfg
-      - etc/objects/contacts.cfg
-      - etc/send_nsca.cfg
-      - etc/htpasswd.users
-      - etc/nsca.cfg
-      - etc/cgi.cfg
+      - resource.cfg=etc/resource.cfg
+      - nagios.cfg=etc/nagios.cfg
+      - objects/templates.cfg=etc/objects/templates.cfg
+      - objects/printer.cfg=etc/objects/printer.cfg
+      - objects/switch.cfg=etc/objects/switch.cfg
+      - objects/timeperiods.cfg=etc/objects/timeperiods.cfg
+      - objects/windows.cfg=etc/objects/windows.cfg
+      - objects/localhost.cfg=etc/objects/localhost.cfg
+      - objects/commands.cfg=etc/objects/commands.cfg
+      - objects/contacts.cfg=etc/objects/contacts.cfg
+      - send_nsca.cfg=etc/send_nsca.cfg
+      - htpasswd.users=etc/htpasswd.users
+      - nsca.cfg=etc/nsca.cfg
+      - cgi.cfg=etc/cgi.cfg
