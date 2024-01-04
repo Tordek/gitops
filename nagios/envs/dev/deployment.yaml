@@ -12,39 +12,68 @@ spec:
         app: nagios
     spec:
       containers:
-      - name: nagios
-        image: jasonrivers/nagios:latest
-        resources:
-          limits:
-            memory: "256Mi"
-            cpu: "500m"
-        ports:
-        - containerPort: 80
-        envFrom:
-        - configMapRef:
-            name: nagios
-        volumeMounts:
-        - name: etc
-          mountPath: "/opt/nagios/etc"
-          readOnly: true
+        - name: nagios
+          image: jasonrivers/nagios:latest
+          resources:
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 80
+          envFrom:
+            - configMapRef:
+                name: nagios
+          volumeMounts:
+            - name: etc
+              mountPath: "/opt/nagios/etc"
+              readOnly: true
       volumes:
-      - name: etc
-        configMap:
-          name: nagiosetc
-        # startupProbe:
-        #   httpGet:
-        #       path: /
-        #       port: 5000
-        #   initialDelaySeconds: 10
-        #   periodSeconds: 10
-        #   failureThreshold: 50
-        # livenessProbe:
-        #   httpGet:
-        #       path: /
-        #       port: 5000
-        #   initialDelaySeconds: 6
-        #   periodSeconds: 6
-        #   failureThreshold: 10
+        - name: etc
+          configMap:
+            name: nagiosetc
+            items:
+              - key: resource.cfg
+                path: etc/resource.cfg
+              - key: nagios.cfg
+                path: etc/nagios.cfg
+              - key: templates.cfg
+                path: etc/objects/templates.cfg
+              - key: printer.cfg
+                path: etc/objects/printer.cfg
+              - key: switch.cfg
+                path: etc/objects/switch.cfg
+              - key: timeperiods.cfg
+                path: etc/objects/timeperiods.cfg
+              - key: windows.cfg
+                path: etc/objects/windows.cfg
+              - key: localhost.cfg
+                path: etc/objects/localhost.cfg
+              - key: commands.cfg
+                path: etc/objects/commands.cfg
+              - key: contacts.cfg
+                path: etc/objects/contacts.cfg
+              - key: send_nsca.cfg
+                path: etc/send_nsca.cfg
+              - key: htpasswd.users
+                path: etc/htpasswd.users
+              - key: nsca.cfg
+                path: etc/nsca.cfg
+              - key: cgi.cfg
+                path: etc/cgi.cfg
+          # startupProbe:
+          #   httpGet:
+          #       path: /
+          #       port: 5000
+          #   initialDelaySeconds: 10
+          #   periodSeconds: 10
+          #   failureThreshold: 50
+          # livenessProbe:
+          #   httpGet:
+          #       path: /
+          #       port: 5000
+          #   initialDelaySeconds: 6
+          #   periodSeconds: 6
+          #   failureThreshold: 10
 ---
 apiVersion: v1
 kind: Service
@@ -53,9 +82,9 @@ metadata:
 spec:
   selector:
     app: nagios
-  type : ClusterIP
+  type: ClusterIP
   ports:
-  - port: 80
+    - port: 80
 
 ---
 apiVersion: v1
@@ -74,17 +103,17 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: nagios.traitor.ar
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: nagios
-            port:
-              number: 80
+    - host: nagios.traitor.ar
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nagios
+                port:
+                  number: 80
   tls:
-  - hosts:
-      - nagios.traitor.ar
-    secretName: nagios-cert
+    - hosts:
+        - nagios.traitor.ar
+      secretName: nagios-cert
