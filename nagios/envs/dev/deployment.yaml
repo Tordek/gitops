@@ -23,14 +23,14 @@ spec:
         envFrom:
         - configMapRef:
             name: nagios
-        volumeMounts:
-        - name: etc
-          mountPath: "/opt/nagios/etc"
-          readOnly: true
-      volumes:
-      - name: etc
-        configMap:
-          name: nagiosetc
+      #   volumeMounts:
+      #   - name: etc
+      #     mountPath: "/opt/nagios/etc"
+      #     readOnly: true
+      # volumes:
+      # - name: etc
+      #   configMap:
+      #     name: nagiosetc
         # startupProbe:
         #   httpGet:
         #       path: /

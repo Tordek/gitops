@@ -18,17 +18,17 @@ spec:
         env: dev
     spec:
       containers:
-      - name: adminer
-        image: adminer:latest
-        ports:
-        - containerPort: 8080
-        resources:
-          limits:
-            memory: "512Mi"
-            cpu: "500m"
-        env:
-        - name: MYSQL_ROOT_PASSWORD
-          value: "pasword"
+        - name: adminer
+          image: adminer:latest
+          ports:
+            - containerPort: 8080
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: "pasword"
 ---
 apiVersion: v1
 kind: Service
@@ -36,11 +36,11 @@ metadata:
   name: adminer
 spec:
   selector:
-      app: adminer
-      env: dev
-  type : ClusterIP
+    app: adminer
+    env: dev
+  type: ClusterIP
   ports:
-  - port: 8080
+    - port: 8080
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -49,17 +49,17 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: adminer.traitor.ar
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: adminer
-            port:
-              number: 8080
-    tls:
+    - host: adminer.traitor.ar
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: adminer
+                port:
+                  number: 8080
+  tls:
     - hosts:
         - adminer.traitor.ar
       secretName: traitor-cert
