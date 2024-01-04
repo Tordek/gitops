@@ -60,6 +60,8 @@ spec:
                 path: nsca.cfg
               - key: cgi.cfg
                 path: cgi.cfg
+              - key: empty
+                path: conf.d/empty
           # startupProbe:
           #   httpGet:
           #       path: /
