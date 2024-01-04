@@ -8,4 +8,17 @@ namespace: nagios
 configMapGenerator:
   - name: nagiosetc
     files:
-      - "etc/nagios.cfg"
+      - ./etc/resource.cfg
+      - ./etc/nagios.cfg
+      - ./etc/objects/templates.cfg
+      - ./etc/objects/printer.cfg
+      - ./etc/objects/switch.cfg
+      - ./etc/objects/timeperiods.cfg
+      - ./etc/objects/windows.cfg
+      - ./etc/objects/localhost.cfg
+      - ./etc/objects/commands.cfg
+      - ./etc/objects/contacts.cfg
+      - ./etc/send_nsca.cfg
+      - ./etc/htpasswd.users
+      - ./etc/nsca.cfg
+      - ./etc/cgi.cfg
