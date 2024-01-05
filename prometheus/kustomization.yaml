@@ -4,6 +4,7 @@ resources:
   - prometheus-deployment.yaml
   - namespace.yaml
   - grafana.yaml
+  - clusterrole.yaml
   
 namespace: prometheus
 
